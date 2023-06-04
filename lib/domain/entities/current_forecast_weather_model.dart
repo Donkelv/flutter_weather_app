@@ -446,15 +446,14 @@ class Alerts {
   int? start;
   int? end;
   String? description;
-  
 
-  Alerts(
-      {this.senderName,
-      this.event,
-      this.start,
-      this.end,
-      this.description,
-      });
+  Alerts({
+    this.senderName,
+    this.event,
+    this.start,
+    this.end,
+    this.description,
+  });
 
   Alerts.fromJson(Map<String, dynamic> json) {
     senderName = json['sender_name'];
@@ -462,7 +461,6 @@ class Alerts {
     start = json['start'];
     end = json['end'];
     description = json['description'];
-    
   }
 
   Map<String, dynamic> toJson() {
@@ -472,7 +470,7 @@ class Alerts {
     data['start'] = start;
     data['end'] = end;
     data['description'] = description;
-    
+
     return data;
   }
 }
