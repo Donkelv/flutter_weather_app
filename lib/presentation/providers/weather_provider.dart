@@ -6,7 +6,7 @@ import 'package:flutter_weather_app/presentation/state/weather_state.dart';
 
 
 final fetchWeatherDataProvider = StateNotifierProvider<WeatherRepositoryNotifier, WeatherState>((ref) {
-  return  WeatherRepositoryNotifier(ref: ref, baseWeatherRepository: ref.watch(weatherRepoProvider));
+  return  WeatherRepositoryNotifier(baseWeatherRepository: ref.watch(weatherRepoProvider));
 });
 
 

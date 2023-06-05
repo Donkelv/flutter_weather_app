@@ -1,7 +1,3 @@
-///[To Do] Implement http calls to the weather repository
-///
-///
-///
 import 'package:geolocator/geolocator.dart' as geolocator;
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart' as dio;
