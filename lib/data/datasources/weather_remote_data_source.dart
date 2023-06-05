@@ -15,12 +15,15 @@ import 'package:geolocator/geolocator.dart';
 class WeatherRepository implements BaseWeatherRepository {
   @override
   Future<Either<Failure, CurrentForecastWeatherModel>>
-    getCurrentWeatherForecast() async {
-       final Position position = await _getCurrentLocation();
-    String url = "$baseUrl?lat=${position.latitude}&lon=${position.longitude}&appid=$apiKey";
-
+      getCurrentWeatherForecast() async {
+    final Position position = await _getCurrentLocation();
+    String url =
+        "$baseUrl?lat=${position.latitude}&lon=${position.longitude}&appid=$apiKey";
+    debugPrint(url);
     try {
       final response = await dio.Dio().get(url);
+      print(response);
+
       if (response.statusCode == 200) {
         debugPrint(response.statusCode.toString());
         Map<String, dynamic> content = response.data;
@@ -35,11 +38,11 @@ class WeatherRepository implements BaseWeatherRepository {
             message: "Failed to fetch weather data, please try again later"));
       }
     } catch (err) {
+      print(err);
       return Left(
           Failure(message: "An error occurred, please try again later"));
     }
   }
-
 
   Future<Position> _getCurrentLocation() async {
     bool serviceEnabled;

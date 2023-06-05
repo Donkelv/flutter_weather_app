@@ -1,8 +1,8 @@
 class CurrentForecastWeatherModel {
-  double? lat;
-  double? lon;
+  num? lat;
+  num? lon;
   String? timezone;
-  int? timezoneOffset;
+  num? timezoneOffset;
   Current? current;
   List<Minutely>? minutely;
   List<Hourly>? hourly;
@@ -79,20 +79,20 @@ class CurrentForecastWeatherModel {
 }
 
 class Current {
-  int? dt;
-  int? sunrise;
-  int? sunset;
-  double? temp;
-  double? feelsLike;
-  int? pressure;
-  int? humidity;
-  double? dewPoint;
-  double? uvi;
-  int? clouds;
-  int? visibility;
-  double? windSpeed;
-  int? windDeg;
-  double? windGust;
+  num? dt;
+  num? sunrise;
+  num? sunset;
+  num? temp;
+  num? feelsLike;
+  num? pressure;
+  num? humidity;
+  num? dewPonum;
+  num? uvi;
+  num? clouds;
+  num? visibility;
+  num? windSpeed;
+  num? windDeg;
+  num? windGust;
   List<Weather>? weather;
 
   Current(
@@ -103,14 +103,14 @@ class Current {
       this.feelsLike,
       this.pressure,
       this.humidity,
-      this.dewPoint,
+      this.dewPonum,
       this.uvi,
       this.clouds,
       this.visibility,
       this.windSpeed,
       this.windDeg,
       this.windGust,
-      this.weather});
+      this.weather, required double dewPoint});
 
   Current.fromJson(Map<String, dynamic> json) {
     dt = json['dt'];
@@ -120,7 +120,7 @@ class Current {
     feelsLike = json['feels_like'];
     pressure = json['pressure'];
     humidity = json['humidity'];
-    dewPoint = json['dew_point'];
+    dewPonum = json['dew_ponum'];
     uvi = json['uvi'];
     clouds = json['clouds'];
     visibility = json['visibility'];
@@ -144,7 +144,7 @@ class Current {
     data['feels_like'] = feelsLike;
     data['pressure'] = pressure;
     data['humidity'] = humidity;
-    data['dew_point'] = dewPoint;
+    data['dew_ponum'] = dewPonum;
     data['uvi'] = uvi;
     data['clouds'] = clouds;
     data['visibility'] = visibility;
@@ -159,7 +159,7 @@ class Current {
 }
 
 class Weather {
-  int? id;
+  num? id;
   String? main;
   String? description;
   String? icon;
@@ -184,8 +184,8 @@ class Weather {
 }
 
 class Minutely {
-  int? dt;
-  int? precipitation;
+  num? dt;
+  num? precipitation;
 
   Minutely({this.dt, this.precipitation});
 
@@ -203,20 +203,20 @@ class Minutely {
 }
 
 class Hourly {
-  int? dt;
-  double? temp;
-  double? feelsLike;
-  int? pressure;
-  int? humidity;
-  double? dewPoint;
-  int? uvi;
-  int? clouds;
-  int? visibility;
-  double? windSpeed;
-  int? windDeg;
-  double? windGust;
+  num? dt;
+  num? temp;
+  num? feelsLike;
+  num? pressure;
+  num? humidity;
+  num? dewPonum;
+  num? uvi;
+  num? clouds;
+  num? visibility;
+  num? windSpeed;
+  num? windDeg;
+  num? windGust;
   List<Weather>? weather;
-  double? pop;
+  num? pop;
 
   Hourly(
       {this.dt,
@@ -224,7 +224,7 @@ class Hourly {
       this.feelsLike,
       this.pressure,
       this.humidity,
-      this.dewPoint,
+      this.dewPonum,
       this.uvi,
       this.clouds,
       this.visibility,
@@ -240,7 +240,7 @@ class Hourly {
     feelsLike = json['feels_like'];
     pressure = json['pressure'];
     humidity = json['humidity'];
-    dewPoint = json['dew_point'];
+    dewPonum = json['dew_ponum'];
     uvi = json['uvi'];
     clouds = json['clouds'];
     visibility = json['visibility'];
@@ -263,7 +263,7 @@ class Hourly {
     data['feels_like'] = feelsLike;
     data['pressure'] = pressure;
     data['humidity'] = humidity;
-    data['dew_point'] = dewPoint;
+    data['dew_ponum'] = dewPonum;
     data['uvi'] = uvi;
     data['clouds'] = clouds;
     data['visibility'] = visibility;
@@ -279,26 +279,26 @@ class Hourly {
 }
 
 class Daily {
-  int? dt;
-  int? sunrise;
-  int? sunset;
-  int? moonrise;
-  int? moonset;
-  double? moonPhase;
+  num? dt;
+  num? sunrise;
+  num? sunset;
+  num? moonrise;
+  num? moonset;
+  num? moonPhase;
   String? summary;
   Temp? temp;
   FeelsLike? feelsLike;
-  int? pressure;
-  int? humidity;
-  double? dewPoint;
-  double? windSpeed;
-  int? windDeg;
-  double? windGust;
+  num? pressure;
+  num? humidity;
+  num? dewPonum;
+  num? windSpeed;
+  num? windDeg;
+  num? windGust;
   List<Weather>? weather;
-  int? clouds;
-  double? pop;
-  double? rain;
-  double? uvi;
+  num? clouds;
+  num? pop;
+  num? rain;
+  num? uvi;
 
   Daily(
       {this.dt,
@@ -312,7 +312,7 @@ class Daily {
       this.feelsLike,
       this.pressure,
       this.humidity,
-      this.dewPoint,
+      this.dewPonum,
       this.windSpeed,
       this.windDeg,
       this.windGust,
@@ -336,7 +336,7 @@ class Daily {
         : null;
     pressure = json['pressure'];
     humidity = json['humidity'];
-    dewPoint = json['dew_point'];
+    dewPonum = json['dew_ponum'];
     windSpeed = json['wind_speed'];
     windDeg = json['wind_deg'];
     windGust = json['wind_gust'];
@@ -369,7 +369,7 @@ class Daily {
     }
     data['pressure'] = pressure;
     data['humidity'] = humidity;
-    data['dew_point'] = dewPoint;
+    data['dew_ponum'] = dewPonum;
     data['wind_speed'] = windSpeed;
     data['wind_deg'] = windDeg;
     data['wind_gust'] = windGust;
@@ -385,12 +385,12 @@ class Daily {
 }
 
 class Temp {
-  double? day;
-  double? min;
-  double? max;
-  double? night;
-  double? eve;
-  double? morn;
+  num? day;
+  num? min;
+  num? max;
+  num? night;
+  num? eve;
+  num? morn;
 
   Temp({this.day, this.min, this.max, this.night, this.eve, this.morn});
 
@@ -416,10 +416,10 @@ class Temp {
 }
 
 class FeelsLike {
-  double? day;
-  double? night;
-  double? eve;
-  double? morn;
+  num? day;
+  num? night;
+  num? eve;
+  num? morn;
 
   FeelsLike({this.day, this.night, this.eve, this.morn});
 
@@ -443,8 +443,8 @@ class FeelsLike {
 class Alerts {
   String? senderName;
   String? event;
-  int? start;
-  int? end;
+  num? start;
+  num? end;
   String? description;
 
   Alerts({
