@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_weather_app/presentation/providers/dark_mode_status_provider.dart';
 import 'package:flutter_weather_app/presentation/providers/weather_provider.dart';
 import 'package:flutter_weather_app/presentation/widgets/data_widget.dart';
 import 'package:flutter_weather_app/utils/image_const.dart';
@@ -25,15 +26,16 @@ class _WeatherPageState extends ConsumerState<WeatherPage> {
   @override
   Widget build(BuildContext context) {
     final weatherState = ref.watch(fetchWeatherDataProvider);
+    final isDarkModeValue = ref.watch(darkModeProvider);
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(
+      value:  SystemUiOverlayStyle(
         // For Android.
         // Use [light] for white status bar and [dark] for black status bar.
         statusBarIconBrightness: Brightness.light,
         // For iOS.
         // Use [dark] for white status bar and [light] for black status bar.
-        statusBarBrightness: Brightness.light,
-        statusBarColor: Colors.transparent,
+        statusBarBrightness: isDarkModeValue == true ? Brightness.dark : Brightness.light,
+        //statusBarColor: Colors.transparent,
       ),
       child: Scaffold(
         body: weatherState.when(

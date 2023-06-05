@@ -18,11 +18,13 @@ class WeatherRepository implements BaseWeatherRepository {
       getCurrentWeatherForecast() async {
     final Position position = await _getCurrentLocation();
     String url =
-        "$baseUrl?lat=${position.latitude}&lon=${position.longitude}&appid=$apiKey";
+        "$baseUrl?lat=${position.latitude}&lon=${position.longitude}&units=metric&exclude=minutely,hourly&appid=$apiKey";
     debugPrint(url);
     try {
       final response = await dio.Dio().get(url);
-      print(response);
+      if (kDebugMode) {
+        print(response);
+      }
 
       if (response.statusCode == 200) {
         debugPrint(response.statusCode.toString());
@@ -38,7 +40,9 @@ class WeatherRepository implements BaseWeatherRepository {
             message: "Failed to fetch weather data, please try again later"));
       }
     } catch (err) {
-      print(err);
+      if (kDebugMode) {
+        print(err);
+      }
       return Left(
           Failure(message: "An error occurred, please try again later"));
     }
@@ -65,8 +69,8 @@ class WeatherRepository implements BaseWeatherRepository {
         throw Failure(message: 'Location permissions are denied');
       }
     }
-
     final position = await geolocator.Geolocator.getCurrentPosition();
     return position;
   }
 }
+
