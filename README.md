@@ -27,7 +27,6 @@ This project contains 2 flavors:
 - development
 - production
 
-The project also uses fvm a simple CLI to manage Flutter SDK versions [![fvm][fvm_badge]][fvm_link]
 
 To run the desired flavor either use the launch configuration in VSCode/Android Studio or use the following commands:
 
